@@ -2,6 +2,8 @@ package com.xu.ggkt.vod.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.xu.ggkt.model.vod.Teacher;
+import com.xu.ggkt.result.Result;
+import com.xu.ggkt.vo.vod.TeacherQueryVo;
 
 /**
  * <p>
@@ -13,4 +15,12 @@ import com.xu.ggkt.model.vod.Teacher;
  */
 public interface TeacherService extends IService<Teacher> {
 
+    /**
+     * 分页查询
+     * @param currentPage 当前页
+     * @param pageSize 页面大小
+     * @param teacherQueryVo 查询条件
+     * @return
+     */
+    Result findQueryPage(long currentPage, Long pageSize, TeacherQueryVo teacherQueryVo);
 }
