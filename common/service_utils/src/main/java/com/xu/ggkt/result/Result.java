@@ -21,7 +21,7 @@ public class Result<T> {
 
     public static <T> Result<T> ok(T data) {
         Result<T> result = new Result<>();
-        result.setCode(200);
+        result.setCode(20000);
         result.setMessage("成功!");
         if (data != null) {
             result.setData(data);
@@ -31,7 +31,7 @@ public class Result<T> {
 
     public static <T> Result<T> ok(String message, T data) {
         Result<T> result = new Result<>();
-        result.setCode(200);
+        result.setCode(20000);
         if (message == null || "".equals(message)) {
             result.setMessage("成功!");
         } else {
@@ -45,7 +45,7 @@ public class Result<T> {
 
     public static <T> Result<T> fail(T data) {
         Result<T> result = new Result<>();
-        result.setCode(201);
+        result.setCode(20001);
         result.setMessage("失败!");
         if (data != null) {
             result.setData(data);
@@ -55,7 +55,7 @@ public class Result<T> {
 
     public static <T> Result<T> fail(String message, T data) {
         Result<T> result = new Result<>();
-        result.setCode(201);
+        result.setCode(20001);
 
         if (message == null || "".equals(message)) {
             result.setMessage("失败!");

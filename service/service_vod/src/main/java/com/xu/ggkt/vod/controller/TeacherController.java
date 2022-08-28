@@ -2,6 +2,7 @@ package com.xu.ggkt.vod.controller;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.xu.ggkt.exception.GgktException;
 import com.xu.ggkt.model.vod.Teacher;
 import com.xu.ggkt.result.Result;
 import com.xu.ggkt.vo.vod.TeacherQueryVo;
@@ -23,6 +24,7 @@ import java.util.List;
  */
 @Api(tags = "讲师管理接口")
 @RestController
+@CrossOrigin //允许跨域访问
 @RequestMapping("/admin/vod/teacher")
 public class TeacherController {
 
@@ -38,6 +40,13 @@ public class TeacherController {
     @ApiOperation("查询所有讲师列表")
     @GetMapping("/findAll")
     public Result<List<Teacher>> findAll() {
+
+        try {
+            int a = 1 / 0;
+        } catch (Exception e) {
+            throw new GgktException(201,"自定义异常GgktException");
+        }
+
         List<Teacher> list = teacherService.list();
         return Result.ok("哈哈哈哈哈", list);
     }
@@ -93,7 +102,7 @@ public class TeacherController {
      */
     @ApiOperation(value = "根据id查询讲师")
     @GetMapping("queryById/{id}")
-    public Result<Teacher> queryById(@PathVariable Long id){
+    public Result<Teacher> queryById(@PathVariable Long id) {
         Teacher teacher = teacherService.getById(id);
         return Result.ok(teacher);
     }
@@ -104,7 +113,7 @@ public class TeacherController {
      */
     @ApiOperation(value = "根据id编辑讲师")
     @PutMapping("updateById")
-    public Result<Boolean> updateById(@RequestBody Teacher teacher){
+    public Result<Boolean> updateById(@RequestBody Teacher teacher) {
         boolean b = teacherService.updateById(teacher);
         if (b)
             return Result.ok(b);
@@ -118,15 +127,13 @@ public class TeacherController {
      */
     @ApiOperation(value = "根据id批量删除讲师")
     @PutMapping("deleteByIdList")
-    public Result<Boolean> deleteByIdList(@RequestBody List<Long> ids){
+    public Result<Boolean> deleteByIdList(@RequestBody List<Long> ids) {
         boolean b = teacherService.removeByIds(ids);
         if (b)
             return Result.ok(b);
         else
             return Result.fail(b);
     }
-
-
 
 
 }
